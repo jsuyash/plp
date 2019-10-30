@@ -1,0 +1,12 @@
+@mixin animate-slide-bottom-up {
+  animation: slide-bottom-up 0.5s cubic-bezier(0, 1, 0.5, 1);
+}
+
+@keyframes slide-bottom-up {
+  0% {
+    margin-top: -80%;
+  }
+  100% {
+    margin-top: 0%;
+  }
+}
