@@ -26,24 +26,50 @@ class Dialog extends React.Component {
   }
 
   render() {
-    const { status, onClose, dialogType } = this.props;
+    const {
+      status,
+      onClose,
+      dialogType,
+      dialogProps = {},
+      dialogActions = {}
+    } = this.props;
+    const { shortBottom = "" } = dialogProps;
 
     if (!status) {
       return false;
     }
     return (
       <React.Fragment>
-        <section className="dialog-wrapper" onKeyDown={this.handleOnKeyDown}>
+        <section
+          className={`dialog-wrapper ${
+            shortBottom ? "dialog-bottom-short" : ""
+          }`}
+          onKeyDown={this.handleOnKeyDown}
+        >
           <div className="close-icon-wrapper">
-            <span title="Close Dialog" className="close-icon" onClick={() => onClose()}>
+            <span
+              title="Close Dialog"
+              className="close-icon"
+              onClick={() => onClose()}
+            >
               X
             </span>
           </div>
           <div className="dialog-content">
-            <RenderDialogContentByType dialogType={dialogType} />
+            <RenderDialogContentByType
+              dialogType={dialogType}
+              dialogProps={dialogProps}
+              dialogActions={dialogActions}
+            />
           </div>
+          {dialogType && dialogType === "FILTERS" && (
+            <div className="dialog-footer">
+              <button onClick={onClose}>Close</button>
+              <button>Apply</button>
+            </div>
+          )}
         </section>
-        ;<div className="dialog-backdrop"></div>
+        <div className="dialog-backdrop"></div>
       </React.Fragment>
     );
   }

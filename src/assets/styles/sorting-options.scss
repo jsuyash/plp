@@ -1,0 +1,21 @@
+.sorting-options-wrapper {
+  .list-row {
+    padding: 10px;
+    background-color: #f1f1f1;
+    margin: 5px 0px;
+    float: left;
+    width: calc(100% - 20px);
+    &:hover {
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      display: none;
+      width: 100%;
+    }
+    label {
+      float: left;
+      font-weight: 400;
+      width: 100%;
+    }
+  }
+}

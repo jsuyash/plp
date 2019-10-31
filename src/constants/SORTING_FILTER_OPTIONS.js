@@ -8,3 +8,9 @@ export const SORTING_OPTIONS = [
     value: "PRICE_DESC"
   }
 ];
+
+export const FILTER_OPTIONS = [
+  {
+    label: "Colors"
+  }
+];

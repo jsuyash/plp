@@ -1,6 +1,6 @@
 export const PRODUCT_LIST = [
   {
-    id: 1,
+    id: [1, new Date().getTime()].join(""),
     name: "Hancock",
     shortDescription: "Slim Fit Solid Formal Shirt",
     imageUrl:
@@ -10,7 +10,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "599.00"
   },
   {
-    id: 2,
+    id: [2, new Date().getTime()].join(""),
     name: "Van Heusen",
     shortDescription: "Men Slim Fit Formal Shirt",
     imageUrl:
@@ -20,7 +20,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "599.00"
   },
   {
-    id: 3,
+    id: [3, new Date().getTime()].join(""),
     name: "Red Tape",
     shortDescription: "Men Slim Fit Formal Shirt",
     imageUrl:
@@ -30,7 +30,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "599.00"
   },
   {
-    id: 4,
+    id: [4, new Date().getTime()].join(""),
     name: "H&M",
     shortDescription: "Men Semi Formal Shirt",
     imageUrl:
@@ -40,7 +40,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "599.00"
   },
   {
-    id: 5,
+    id: [5, new Date().getTime()].join(""),
     name: "Red Tape",
     shortDescription: "Men Slim Fit Formal Shirt",
     imageUrl:
@@ -50,7 +50,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "599.00"
   },
   {
-    id: 6,
+    id: [6, new Date().getTime()].join(""),
     name: "Invictus",
     shortDescription: "Printed Slim Fit Formal Shirt",
     imageUrl:
@@ -60,7 +60,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "599.00"
   },
   {
-    id: 7,
+    id: [7, new Date().getTime()].join(""),
     name: "Invictus",
     shortDescription: "Slim Fit Formal Shirt",
     imageUrl:
@@ -70,7 +70,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "599.00"
   },
   {
-    id: 8,
+    id: [8, new Date().getTime()].join(""),
     name: "Louis Philippe",
     shortDescription: "Men Slim Fit Formal Shirt",
     imageUrl:
@@ -80,7 +80,7 @@ export const PRODUCT_LIST = [
     discountedPrice: "2599.00"
   },
   {
-    id: 9,
+    id: [9, new Date().getTime()].join(""),
     name: "Louis Philippe",
     shortDescription: "Men Slim Fit Formal Shirt",
     imageUrl:

@@ -18,10 +18,12 @@ const ProductCard = props => {
         {!!availSizes && availSizes.length > 0 && (
           <div className="size-wrapper">
             <React.Fragment>
-              <div style={{ padding: "2px 0px 5px 0px" }}>Sizes</div>
-              {availSizes.map(size => {
-                return <span key={size}>{size}</span>;
-              })}
+              <div className="size-title">Sizes</div>
+              <div className="size-list">
+                {availSizes.map(size => {
+                  return <span key={size}>{size}</span>;
+                })}
+              </div>
             </React.Fragment>
           </div>
         )}
