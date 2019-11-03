@@ -31,9 +31,11 @@ class Dialog extends React.Component {
       onClose,
       dialogType,
       dialogProps = {},
-      dialogActions = {}
+      dialogActions = {},
+      dialogValue = {}
     } = this.props;
-    const { shortBottom = "" } = dialogProps;
+    const { shortBottom = "", fullScreen = "", hideCloseIcon = false } = dialogProps;
+    const { applyFilters } = dialogActions;
 
     if (!status) {
       return false;
@@ -41,31 +43,30 @@ class Dialog extends React.Component {
     return (
       <React.Fragment>
         <section
-          className={`dialog-wrapper ${
-            shortBottom ? "dialog-bottom-short" : ""
+          className={`dialog-wrapper ${shortBottom ? "dialog-bottom-short" : ""}  ${
+            fullScreen ? "full-screen-dialog" : ""
           }`}
           onKeyDown={this.handleOnKeyDown}
         >
-          <div className="close-icon-wrapper">
-            <span
-              title="Close Dialog"
-              className="close-icon"
-              onClick={() => onClose()}
-            >
-              X
-            </span>
-          </div>
+          {!hideCloseIcon && (
+            <div className="close-icon-wrapper">
+              <span title="Close Dialog" className="close-icon" onClick={() => onClose()}>
+                X
+              </span>
+            </div>
+          )}
           <div className="dialog-content">
             <RenderDialogContentByType
               dialogType={dialogType}
               dialogProps={dialogProps}
+              dialogValue={dialogValue}
               dialogActions={dialogActions}
             />
           </div>
           {dialogType && dialogType === "FILTERS" && (
             <div className="dialog-footer">
               <button onClick={onClose}>Close</button>
-              <button>Apply</button>
+              <button onClick={applyFilters}>Apply</button>
             </div>
           )}
         </section>

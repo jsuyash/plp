@@ -3,7 +3,7 @@ import "../assets/styles/product-card.scss";
 
 const ProductCard = props => {
   const { product } = props;
-  const { name, shortDescription, imageUrl, actualPrice, availSizes } = product;
+  const { name, shortDescription, imageUrl, actualPrice, availSizes, discountedPrice } = product;
   return (
     <div className="product-card">
       <div className="card-body">
@@ -14,7 +14,6 @@ const ProductCard = props => {
         <div className="short-description">{shortDescription}</div>
       </div>
       <div className="card-footer">
-        <div className="price">&#8377; {actualPrice}</div>
         {!!availSizes && availSizes.length > 0 && (
           <div className="size-wrapper">
             <React.Fragment>
@@ -27,6 +26,7 @@ const ProductCard = props => {
             </React.Fragment>
           </div>
         )}
+        <div className="price">&#8377; {discountedPrice}</div>
       </div>
     </div>
   );

@@ -1,0 +1,72 @@
+@import "../modules/animations";
+
+.filter-wrapper {
+  width: 100%;
+  .title {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: var(--dark-blue-color);
+    color: var(--white-color);
+    font-size: 1.2rem;
+    font-weight: 100;
+  }
+  .filter-content-block {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    .filter-left-block {
+      flex-basis: 40%;
+      background-color: var(--off-white-color);
+      max-height: 90vh;
+      min-height: 90vh;
+      overflow-y: auto;
+      .filter-row {
+        padding: 10px;
+        min-height: 35px;
+        width: calc(100% - 20px);
+        background-color: var(--off-white-color);
+        color: var(--dark-blue-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:hover {
+          cursor: pointer;
+        }
+        .filter-count {
+          padding: 9px 8px 6px 8px;
+          text-align: center;
+          background-color: var(--dark-blue-color);
+          color: var(--white-color);
+          width: 12px;
+          height: 12px;
+          margin-left: 5px;
+          border-radius: 50%;
+          font-size: 0.7rem;
+          vertical-align: middle;
+          font-weight: 600;
+        }
+      }
+      .filter-row.selected {
+        background-color: var(--white-color);
+        font-weight: 600;
+        color: var(--dark-blue-color);
+      }
+    }
+    .filter-right-block {
+      flex-basis: 60%;
+      background-color: var(--white-color);
+      max-height: 90vh;
+      min-height: 90vh;
+      overflow-y: auto;
+      .filter-option-row {
+        padding: 10px;
+        width: calc(100% - 20px);
+        background-color: transparent;
+        label {
+          width: 100%;
+          padding: 0px 10px;
+        }
+      }
+    }
+  }
+}

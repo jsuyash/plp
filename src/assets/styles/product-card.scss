@@ -2,8 +2,10 @@
   margin: 20px 60px;
   display: flex;
   justify-content: center;
+  align-self: flex-start;
+  align-items: flex-start;
   flex-direction: column;
-  flex: 1 1 20%;
+  flex: 0 0 22%;
   overflow: hidden;
   position: relative;
   .card-body {
@@ -29,6 +31,7 @@
       color: #888;
       font-size: 0.8rem;
       padding: 2px 5px;
+      overflow: hidden;
     }
   }
   .card-footer {
@@ -37,12 +40,12 @@
       padding: 2px 5px;
     }
     .size-wrapper {
-      color: #3c3c3c;
+      color: var(--black-color);
       display: none;
       position: absolute;
       bottom: 62px;
       width: calc(100% - 20px);
-      background: #f5f5f5;
+      background: var(--white-color);
       padding: 8px 10px 8px 10px;
       box-shadow: 0px 0px 2px #9e9e9e;
       div.size-title {
@@ -55,11 +58,12 @@
         justify-content: flex-start;
         align-items: center;
         span {
+          width: 15px;
           padding: 3px;
           text-align: center;
           font-size: 0.75rem;
           border: 1px solid #888;
-          background-color: #fff;
+          background-color: var(--white-color);
           margin: 0px 5px;
           cursor: pointer;
           border-radius: 3px;
@@ -70,7 +74,7 @@
           &:hover {
             background-color: black;
             transition: 0.4s all cubic-bezier(0.215, 0.61, 0.355, 1);
-            color: #fff;
+            color: var(--white-color);
             border: 1px solid black;
           }
         }
@@ -79,7 +83,6 @@
   }
 
   &:hover {
-    // box-shadow: 0px 0px 3px #11111147;
     .card-footer {
       .size-wrapper {
         display: block;
@@ -92,6 +95,46 @@
 @media (max-width: 720px) {
   .product-card {
     margin: 8px;
-    flex: 1 1 35%;
+    flex: 0 0 45%;
+    max-height: 300px;
+    .card-body {
+      .name {
+        font-size: 1rem;
+        padding: 5px 5px 2px 5px;
+      }
+      .short-description {
+        font-size: 0.6rem;
+        padding: 0px 5px 5px 5px;
+      }
+    }
+    .card-footer {
+      .price {
+      }
+      .size-wrapper {
+        bottom: 58px;
+        div.size-title {
+          font-size: 0.75rem;
+        }
+        .size-list {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          overflow: hidden;
+          span {
+            width: 15px;
+            font-size: 0.55rem;
+            &:first-child {
+              margin: 0px 5px 0px 0px;
+            }
+            &:hover {
+              background-color: black;
+              transition: 0.4s all cubic-bezier(0.215, 0.61, 0.355, 1);
+              color: var(--white-color);
+              border: 1px solid black;
+            }
+          }
+        }
+      }
+    }
   }
 }

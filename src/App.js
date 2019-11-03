@@ -11,10 +11,7 @@ class App extends React.Component {
         <Router>
           <Header />
           <div className="content-wrapper">
-            <div className="left-block"></div>
-            <div className="right-block">
-              <PageRoutes />
-            </div>
+            <PageRoutes />
           </div>
         </Router>
       </div>

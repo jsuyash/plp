@@ -1,0 +1,19 @@
+@mixin submit-button {
+  flex: 1;
+  margin: 5px;
+  border: 0px;
+  padding: 10px;
+  text-transform: uppercase;
+  color: var(--white-color);
+  background-color: var(--dark-blue-color);
+}
+
+@mixin submit-button-dark {
+  flex: 1;
+  margin: 5px;
+  border: 0px;
+  padding: 10px;
+  text-transform: uppercase;
+  color: var(--dark-blue-color);
+  background-color: var(--white-color);
+}
