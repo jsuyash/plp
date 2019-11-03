@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://jsuyash.github.io/plp/",
   "scripts": {
     "dev": "webpack-dev-server --mode=development --env=development --content-base src --inline --hot --port 8009 --history-api-fallback",
     "build": "webpack --config webpack.prod.config.js  --env=production --mode=production --progress --profile --colors --display-error-details",

@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app-root">
-        <Router basename="/">
+        <Router basename={window.location.pathname || ""}>
           <Header />
           <div className="content-wrapper">
             <PageRoutes />
