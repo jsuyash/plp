@@ -1,4 +1,5 @@
 @import "../modules/common";
+@import "../modules/flex";
 
 .clothing-wrapper {
   width: 100%;
@@ -18,9 +19,7 @@
       .filter-head {
         width: 100%;
         max-height: 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex--row-center-space-between;
         border-bottom: 1px solid #ccc;
         h4 {
           text-transform: uppercase;
@@ -28,6 +27,7 @@
         }
         div {
           font-size: 0.8rem;
+          cursor: pointer;
         }
       }
       .filters-base {
@@ -44,6 +44,11 @@
             color: var(--dark-blue-color);
           }
           .filter-list-option {
+            .filter-option-row {
+              label {
+                cursor: pointer;
+              }
+            }
           }
         }
       }
@@ -56,16 +61,14 @@
       width: 87.3%;
       padding: 5px;
       margin: 0px auto;
-      display: flex;
-      justify-content: space-between;
+      @include flex--row-center-space-between;
       margin-top: 20px;
       select {
         padding: 5px;
       }
     }
     .listing-wrapper {
-      display: flex;
-      justify-content: flex-start;
+      @include flex--row-center-start;
       flex-wrap: wrap;
       overflow: hidden;
       padding-bottom: 80px;
@@ -84,6 +87,8 @@
   background-color: #e4e4e4;
 }
 
+/* ****************************** MEDIA QUERIES  ****************************** */
+/* **************************************************************************** */
 @media (max-width: 720px) {
   .clothing-wrapper {
     .left-block {
@@ -96,8 +101,7 @@
         display: none;
       }
       .sorting-filter-options-wrapper {
-        display: flex;
-        justify-content: space-between;
+        @include flex--row-center-space-between;
         position: fixed;
         bottom: 0px;
         padding: 10px;
@@ -114,4 +118,17 @@
       }
     }
   }
+}
+
+.no-content-found {
+  background: white;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #001111;
+  padding: 30px;
+  font-size: 1.2rem;
+  min-height: 100px;
 }

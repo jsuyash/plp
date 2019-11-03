@@ -336,7 +336,9 @@ class Clothing extends React.Component {
         </div>
         <div className="right-block">
           <div className="sorting-wrapper">
-            <div style={{ display: "flex", alignItems: "center" }}>Search Result Count:  <span style={{fontWeight: "600", marginLeft: "5px"}}>{products.length}</span></div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              Search Result Count: <span style={{ fontWeight: "600", marginLeft: "5px" }}>{products.length}</span>
+            </div>
             <select onChange={this.handleOnSort}>
               {SORTING_OPTIONS &&
                 SORTING_OPTIONS.length > 0 &&
@@ -355,7 +357,7 @@ class Clothing extends React.Component {
               products.length > 0 &&
               products.map(product => {
                 return <ProductCard key={product.id} product={product} />;
-              })) || <div>Nothing Found</div>}
+              })) || <div className="no-content-found">Nothing Found</div>}
           </div>
           <div className="sorting-filter-options-wrapper">
             <button onClick={this.handleOnOpenDialog}>Filters</button>

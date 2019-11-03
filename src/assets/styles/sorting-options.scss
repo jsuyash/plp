@@ -1,10 +1,11 @@
+// NOTE: style for sorting option within dialog compoenent
 .sorting-options-wrapper {
   .list-row {
-    padding: 10px;
-    background-color: #f1f1f1;
-    margin: 5px 0px;
+    padding: 10px 10px 10px 10px;
     float: left;
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
+    margin: 5px 0px;
+    background-color: var(--off-white-color);
     &:hover {
       cursor: pointer;
     }

@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import PageRoutes from "./PageRoutes";
-import "./App.scss";
 import { Header } from "./components";
+import "./App.scss";
 
 class App extends React.Component {
   render() {
     return (
       <div className="app-root">
-        <Router>
+        <Router basename="/">
           <Header />
           <div className="content-wrapper">
             <PageRoutes />
