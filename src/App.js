@@ -7,14 +7,14 @@ import "./App.scss";
 class App extends React.Component {
   render() {
     return (
-      <div className="app-root">
-        <Router basename={window.location.pathname || ""}>
+      <Router basename={window.location.pathname || "/plp"}>
+        <div className="app-root">
           <Header />
           <div className="content-wrapper">
             <PageRoutes />
           </div>
-        </Router>
-      </div>
+        </div>
+      </Router>
     );
   }
 }
