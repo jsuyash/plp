@@ -58,7 +58,7 @@
     width: 80%;
     float: right;
     .sorting-wrapper {
-      width: 87.3%;
+      width: calc(100% - 40px);
       padding: 5px;
       margin: 0px auto;
       @include flex--row-center-space-between;
@@ -77,14 +77,6 @@
       display: none;
     }
   }
-}
-
-.clothing-wrapper div.product-card:nth-child(even) {
-  background-color: #dadada;
-}
-
-.clothing-wrapper div.product-card:nth-child(odd) {
-  background-color: #e4e4e4;
 }
 
 /* ****************************** MEDIA QUERIES  ****************************** */
