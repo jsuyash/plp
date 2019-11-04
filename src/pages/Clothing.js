@@ -300,8 +300,19 @@ class Clothing extends React.Component {
   }
 
   render() {
-    const { isLoading, products, dialogStatus, dialogType, dialogValue, dialogProps, dialogActions, appliedFilters } = this.state;
-    const leftBlockStyle = document.documentElement.scrollTop > 60 ? { position: "fixed", top: "50px" } : { position: "sticky", top: 0 };
+    const {
+      isLoading,
+      products,
+      dialogStatus,
+      dialogType,
+      dialogValue,
+      dialogProps,
+      dialogActions,
+      appliedFilters,
+      hasMore
+    } = this.state;
+    const leftBlockStyle =
+      document.documentElement.scrollTop > 60 ? { position: "fixed", top: "50px" } : { position: "sticky", top: 0 };
 
     return (
       <section className="clothing-wrapper">
@@ -359,6 +370,9 @@ class Clothing extends React.Component {
                 return <ProductCard key={product.id} product={product} />;
               })) || <div className="no-content-found">Nothing Found</div>}
           </div>
+
+          {!hasMore && <div className="no-content-found">Thats all we got for you</div>}
+
           <div className="sorting-filter-options-wrapper">
             <button onClick={this.handleOnOpenDialog}>Filters</button>
             <button onClick={this.handleOnOpenSortingDialog}>Sort</button>
