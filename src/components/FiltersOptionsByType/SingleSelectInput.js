@@ -5,7 +5,6 @@ const SingleSelectInput = props => {
   const { options, filterCode = "", handleOnChange, appliedFilters } = props;
   const selectedFil = CommonHelper.getByKeyValFromObject(appliedFilters, "type", filterCode);
   const { filters = [] } = selectedFil || {};
-
   return (
     <React.Fragment>
       {options &&
@@ -16,7 +15,7 @@ const SingleSelectInput = props => {
             <div className="filter-option-row" key={value}>
               <input
                 type="radio"
-                selected={filters.indexOf(value) > -1 ? true : false}
+                checked={filters.toString() === value.toString() ? "checked" : ""}
                 id={value}
                 name={filterCode}
                 value={value}
