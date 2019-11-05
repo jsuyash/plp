@@ -63,62 +63,8 @@ class Clothing extends React.Component {
   // NOTE: set the filters selected by user
 
   handleOnChange(event) {
-    const { name, value, checked, type } = event.target;
     const { appliedFilters: appliedFiltersList } = this.state;
-
-    let result = [];
-    // NOTE: handling value of checkbox
-    if (event.target.hasOwnProperty("checked")) {
-      // NOTE: push the element directly when the array is empty(Initial Value)
-      if (appliedFiltersList.length === 0) {
-        let filterVal = type === "checkbox" ? [value] : value;
-        if (checked) {
-          const obj = {
-            type: name,
-            filters: filterVal
-          };
-          result = [...appliedFiltersList, obj];
-        }
-      } else {
-        const doesExistRes = CommonHelper.getByKeyValFromObject(appliedFiltersList, "type", name);
-        debugger;
-        const doesExist = doesExistRes ? Object.assign({}, doesExistRes) : {};
-        // NOTE: check if the filter type already exist
-        if (doesExist && Object.keys(doesExist).length > 0) {
-          let { filters = [] } = doesExist;
-          // NOTE: when filters array is not empty and value does not exist
-          if (checked) {
-            if (filters.constructor === Array) {
-              if (filters && filters.length > 0 && filters.indexOf(value) === -1) {
-                filters = [...filters, value];
-              } else if (filters && filters.length === 0) {
-                filters = [...filters, value];
-              }
-            } else if (filters.constructor === String || filters.constructor === Number) {
-              filters = value;
-            }
-          } else if (!checked) {
-            // NOTE: to remove element from filter when uncheck
-            if (filters.length > 0 && filters.indexOf(value) > -1) {
-              filters.splice(filters.indexOf(value), 1);
-            }
-          }
-          doesExist.filters = filters;
-          // NOTE: replace with new updated Value
-          const indexOfExisting = appliedFiltersList.findIndex(af => af.type == name);
-          let newValueClone = Object.assign([], appliedFiltersList);
-          newValueClone[indexOfExisting] = doesExist;
-          result = [...newValueClone];
-        } else {
-          let filterVal = type === "checkbox" ? [value] : value;
-          const obj = {
-            type: name,
-            filters: filterVal
-          };
-          result = [...appliedFiltersList, obj];
-        }
-      }
-    }
+    const result = CommonHelper.getSelectedFilters(event, appliedFiltersList);
     this.setState({ appliedFilters: [...result] }, this.handleOnChangeFilters);
   }
 
@@ -156,10 +102,6 @@ class Clothing extends React.Component {
                 return val.some(ele => searchInValue.includes(ele));
               }
             });
-          } else {
-            const sortedList = this.getSortedList(PRODUCT_LIST, sortBy);
-            const sortedLimitedList = CommonHelper.getListWithLimit(sortedList, 0, LIST_LIMIT);
-            result = sortedLimitedList;
           }
         } else if (searchInValue && (searchInValue.constructor === String || searchInValue.constructor === Number)) {
           result = result.filter(pl => pl[searchKey].toString() === searchInValue.toString());
@@ -179,7 +121,6 @@ class Clothing extends React.Component {
     } else {
       result = CommonHelper.getListWithLimit(result, 0, LIST_LIMIT);
     }
-
     return result;
   }
 
