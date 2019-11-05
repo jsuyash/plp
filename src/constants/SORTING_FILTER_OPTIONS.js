@@ -96,19 +96,23 @@ export const FILTER_OPTIONS = [
     type: "SINGLE_SELECT",
     options: [
       {
-        label: "4 Stars & above",
+        label: "5 Stars",
+        value: 5
+      },
+      {
+        label: "4 Stars",
         value: 4
       },
       {
-        label: "3 Stars & above",
+        label: "3 Stars",
         value: 3
       },
       {
-        label: "2 Stars & above",
+        label: "2 Stars",
         value: 2
       },
       {
-        label: "1 Stars & above",
+        label: "1 Stars",
         value: 1
       }
     ]
@@ -118,5 +122,6 @@ export const FILTER_OPTIONS = [
 export const FILTER_KEY_MAPPER = {
   COLORS: "color",
   SLEEVES: "sleeveSize",
-  SIZE: "availSizes"
+  SIZE: "availSizes",
+  CUSTOMER_RATINGS: "customerRating"
 };

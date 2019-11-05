@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --mode=development --env=development --content-base src --inline --hot --port 8009 --history-api-fallback",
     "build": "webpack --config webpack.prod.config.js  --env=production --mode=production --progress --profile --colors --display-error-details",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "firebase deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -1,15 +1,17 @@
+@import "../modules/animations";
+
 .product-card {
-  margin: 20px 0px;
+  margin: 10px 0px;
   display: flex;
   justify-content: center;
   align-self: flex-start;
   align-items: center;
   flex: 0 0 33%;
-  overflow: hidden;
   position: relative;
   .card-content-main {
     width: calc(100% - 90px);
-    padding: 0px 45px;
+    margin: 0px 45px;
+    background-color: #eee;
     .card-body {
       width: 100%;
       .img-wrapper {
@@ -85,11 +87,14 @@
         }
       }
     }
-
+    transition: 0.4s all cubic-bezier(0.215, 0.61, 0.355, 1);
     &:hover {
+      transition: 0.4s all cubic-bezier(0.215, 0.61, 0.355, 1);
+      box-shadow: 0px 0px 10px #35353545;
       .card-footer {
         .size-wrapper {
           display: block;
+          @include animate-slide-up-bottom;
           transition: 0.4s all cubic-bezier(0.215, 0.61, 0.355, 1);
         }
       }
@@ -101,7 +106,7 @@
   .product-card {
     .card-content-main {
       width: calc(100% - 60px);
-      padding: 0px 30px;
+      margin: 0px 30px;
     }
   }
 }
@@ -110,10 +115,10 @@
   .product-card {
     margin: 8px;
     flex: 0 0 45%;
-    min-height: 300px;
+    min-height: 250px;
     .card-content-main {
       width: calc(100% - 10px);
-      padding: 0px 5px;
+      margin: 0px 5px;
       .card-body {
         .name {
           font-size: 1rem;

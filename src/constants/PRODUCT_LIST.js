@@ -9,7 +9,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "2599.00"
+    discountedPrice: "2599.00",
+    customerRating: 5
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "5399.00"
+    discountedPrice: "5399.00",
+    customerRating: 2
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "349.00"
+    discountedPrice: "349.00",
+    customerRating: 2
   },
   {
     id: 4,
@@ -45,7 +48,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "449.00"
+    discountedPrice: "449.00",
+    customerRating: 2
   },
   {
     id: 5,
@@ -57,7 +61,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "449.00"
+    discountedPrice: "449.00",
+    customerRating: 2
   },
   {
     id: 6,
@@ -69,7 +74,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "449.00"
+    discountedPrice: "449.00",
+    customerRating: 5
   },
   {
     id: 7,
@@ -81,7 +87,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "399.00"
+    discountedPrice: "399.00",
+    customerRating: 5
   },
   {
     id: 8,
@@ -93,7 +100,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "2799.00",
-    discountedPrice: "2599.00"
+    discountedPrice: "2599.00",
+    customerRating: 5
   },
   {
     id: 9,
@@ -105,7 +113,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "2799.00",
-    discountedPrice: "2399.00"
+    discountedPrice: "2399.00",
+    customerRating: 5
   },
   {
     id: 10,
@@ -117,7 +126,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "2500.00",
-    discountedPrice: "1599.00"
+    discountedPrice: "1599.00",
+    customerRating: 5
   },
   {
     id: 11,
@@ -129,7 +139,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "1899.00",
-    discountedPrice: "1599.00"
+    discountedPrice: "1599.00",
+    customerRating: 5
   },
   {
     id: 12,
@@ -141,7 +152,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "599.00"
+    discountedPrice: "599.00",
+    customerRating: 4
   },
   {
     id: 13,
@@ -153,7 +165,8 @@ export const PRODUCT_LIST = [
     color: "RED",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "499.00"
+    discountedPrice: "499.00",
+    customerRating: 4
   },
   {
     id: 14,
@@ -165,7 +178,8 @@ export const PRODUCT_LIST = [
     color: "RED",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "599.00"
+    discountedPrice: "599.00",
+    customerRating: 4
   },
   {
     id: 15,
@@ -177,7 +191,8 @@ export const PRODUCT_LIST = [
     color: "RED",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "599.00"
+    discountedPrice: "599.00",
+    customerRating: 4
   },
   {
     id: 16,
@@ -189,7 +204,8 @@ export const PRODUCT_LIST = [
     color: "RED",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "1899.00",
-    discountedPrice: "1599.00"
+    discountedPrice: "1599.00",
+    customerRating: 5
   },
   {
     id: 17,
@@ -201,7 +217,8 @@ export const PRODUCT_LIST = [
     color: "BLACK",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "599.00"
+    discountedPrice: "599.00",
+    customerRating: 3
   },
   {
     id: 18,
@@ -213,7 +230,8 @@ export const PRODUCT_LIST = [
     color: "BLACK",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "779.00"
+    discountedPrice: "779.00",
+    customerRating: 3
   },
   {
     id: 19,
@@ -225,7 +243,8 @@ export const PRODUCT_LIST = [
     color: "BLACK",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "499.00"
+    discountedPrice: "499.00",
+    customerRating: 3
   },
   {
     id: 20,
@@ -237,7 +256,8 @@ export const PRODUCT_LIST = [
     color: "WHITE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "499.00"
+    discountedPrice: "499.00",
+    customerRating: 5
   },
   {
     id: 21,
@@ -249,7 +269,8 @@ export const PRODUCT_LIST = [
     color: "WHITE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "1899.00",
-    discountedPrice: "1599.00"
+    discountedPrice: "1599.00",
+    customerRating: 1
   },
   {
     id: 22,
@@ -261,7 +282,8 @@ export const PRODUCT_LIST = [
     color: "WHITE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "659.00"
+    discountedPrice: "659.00",
+    customerRating: 1
   },
   {
     id: 23,
@@ -273,7 +295,8 @@ export const PRODUCT_LIST = [
     color: "WHITE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "659.00"
+    discountedPrice: "659.00",
+    customerRating: 1
   },
   {
     id: 24,
@@ -285,7 +308,8 @@ export const PRODUCT_LIST = [
     color: "GREEN",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "799.00"
+    discountedPrice: "799.00",
+    customerRating: 5
   },
   {
     id: 25,
@@ -297,7 +321,8 @@ export const PRODUCT_LIST = [
     color: "GREEN",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "799.00"
+    discountedPrice: "799.00",
+    customerRating: 5
   },
   {
     id: 26,
@@ -309,7 +334,8 @@ export const PRODUCT_LIST = [
     color: "GREEN",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "1899.00",
-    discountedPrice: "1599.00"
+    discountedPrice: "1599.00",
+    customerRating: 5
   },
   {
     id: 27,
@@ -321,7 +347,8 @@ export const PRODUCT_LIST = [
     color: "GREEN",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "239.00"
+    discountedPrice: "239.00",
+    customerRating: 5
   },
   {
     id: 28,
@@ -333,7 +360,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "239.00"
+    discountedPrice: "239.00",
+    customerRating: 5
   },
   {
     id: 29,
@@ -345,7 +373,8 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "HALF_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "239.00"
+    discountedPrice: "239.00",
+    customerRating: 5
   },
   {
     id: 30,
@@ -357,6 +386,7 @@ export const PRODUCT_LIST = [
     color: "BLUE",
     sleeveSize: "FULL_SLEEVES",
     actualPrice: "899.00",
-    discountedPrice: "349.00"
+    discountedPrice: "349.00",
+    customerRating: 5
   }
 ];

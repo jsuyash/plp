@@ -8,6 +8,8 @@ class Clothing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      scrollPosition: 0,
+      showSortingFilter: false,
       products: [],
       appliedFilters: [],
       sortBy: "PRICE_ASC",
@@ -30,15 +32,14 @@ class Clothing extends React.Component {
     this.handleOnOpenDialog = this.handleOnOpenDialog.bind(this);
     this.handleOnOpenSortingDialog = this.handleOnOpenSortingDialog.bind(this);
     this.handleOnCloseDialog = this.handleOnCloseDialog.bind(this);
+    // NOTE: action on click
+    this.applyFilters = this.applyFilters.bind(this);
+    this.handleClearFilters = this.handleClearFilters.bind(this);
 
     // NOTE: get initial product list
     this.getProductsOnLoad = this.getProductsOnLoad.bind(this);
     this.getFilterProductList = this.getFilterProductList.bind(this);
     this.getSortedList = this.getSortedList.bind(this);
-
-    // NOTE: action on click
-    this.applyFilters = this.applyFilters.bind(this);
-    this.handleClearFilters = this.handleClearFilters.bind(this);
 
     // NOTE: helper function to filter product list
     this.filterProductList = this.filterProductList.bind(this);
@@ -60,20 +61,23 @@ class Clothing extends React.Component {
   }
 
   // NOTE: set the filters selected by user
+
   handleOnChange(event) {
-    const { name, value, checked } = event.target;
+    const { name, value, checked, type } = event.target;
     const { appliedFilters: appliedFiltersList } = this.state;
 
+    let result = [];
     // NOTE: handling value of checkbox
     if (event.target.hasOwnProperty("checked")) {
       // NOTE: push the element directly when the array is empty(Initial Value)
       if (appliedFiltersList.length === 0) {
+        let filterVal = type === "checkbox" ? [value] : value;
         if (checked) {
           const obj = {
             type: name,
-            filters: [value]
+            filters: filterVal
           };
-          this.setState({ appliedFiltersList: [...appliedFiltersList, obj] });
+          result = [...appliedFiltersList, obj];
         }
       } else {
         const doesExist = CommonHelper.getByKeyValFromObject(appliedFiltersList, "type", name);
@@ -82,10 +86,14 @@ class Clothing extends React.Component {
           let { filters = [] } = doesExist;
           // NOTE: when filters array is not empty and value does not exist
           if (checked) {
-            if (filters && filters.length > 0 && filters.indexOf(value) === -1) {
-              filters = [...filters, value];
-            } else if (filters && filters.length === 0) {
-              filters = [...filters, value];
+            if (filters.constructor === Array) {
+              if (filters && filters.length > 0 && filters.indexOf(value) === -1) {
+                filters = [...filters, value];
+              } else if (filters && filters.length === 0) {
+                filters = [...filters, value];
+              }
+            } else if (filters.constructor === String || filters.constructor === Number) {
+              filters = value;
             }
           } else if (!checked) {
             // NOTE: to remove element from filter when uncheck
@@ -94,26 +102,24 @@ class Clothing extends React.Component {
             }
           }
           doesExist.filters = filters;
-          this.setState({ appliedFiltersList: [...appliedFiltersList] });
+          result = [...appliedFiltersList];
         } else {
+          let filterVal = type === "checkbox" ? [value] : value;
           const obj = {
             type: name,
-            filters: [value]
+            filters: filterVal
           };
-          this.setState({ appliedFiltersList: [...appliedFiltersList, obj] });
+          result = [...appliedFiltersList, obj];
         }
       }
     }
-
-    setTimeout(() => {
-      this.handleOnChangeFilters(this.state.appliedFiltersList);
-    }, 100);
+    this.setState({ appliedFilters: [...result] }, this.handleOnChangeFilters);
   }
 
   // NOTE: make an api call with this filters & update products array
-  applyFilters() {
+  applyFilters(appliedFilters) {
+    this.handleOnChangeFilters(appliedFilters);
     this.handleOnCloseDialog();
-    this.filterProductList();
   }
 
   getProductsOnLoad() {
@@ -128,7 +134,6 @@ class Clothing extends React.Component {
   // NOTE: pure function to act like api which returns filtered result
   getFilterProductList(appliedFilters, sortBy = "", customOptions = {}) {
     let result = PRODUCT_LIST;
-
     if (appliedFilters.length > 0) {
       // NOTE: getting the key to search for
       const appliedFiltersKeys = appliedFilters.map(af => af["type"]);
@@ -152,7 +157,7 @@ class Clothing extends React.Component {
             result = sortedLimitedList;
           }
         } else if (searchInValue && (searchInValue.constructor === String || searchInValue.constructor === Number)) {
-          result = result.filter(pl => pl[searchKey] === searchInValue);
+          result = result.filter(pl => pl[searchKey].toString() === searchInValue.toString());
         }
       });
     }
@@ -193,13 +198,15 @@ class Clothing extends React.Component {
     this.setState({ products: result, hasMore: true });
   }
 
-  handleOnChangeFilters(appliedFilters) {
+  handleOnChangeFilters(appliedFilters_c = []) {
+    const { appliedFilters = appliedFilters_c } = this.state;
+    const val = appliedFilters_c && appliedFilters_c.length > 0 ? appliedFilters_c : appliedFilters;
     this.setState(
       {
-        appliedFilters,
+        appliedFilters: val,
         dialogValue: {
           filters: FILTER_OPTIONS,
-          appliedFilters: appliedFilters
+          appliedFilters: val
         }
       },
       this.filterProductList
@@ -251,9 +258,12 @@ class Clothing extends React.Component {
 
   handleOnScroll() {
     const { documentElement } = document;
-    const { isLoading, hasMore } = this.state;
+    const { isLoading, hasMore, scrollPosition, dialogStatus } = this.state;
+    const currentScrollPosition = window.pageYOffset;
+    const sortingFilterStatus = scrollPosition > currentScrollPosition ? true : false;
 
-    if (isLoading || !hasMore) return;
+    this.setState({ scrollPosition: currentScrollPosition, showSortingFilter: sortingFilterStatus });
+    if (isLoading || !hasMore || dialogStatus) return;
     if (window.innerHeight + documentElement.scrollTop !== documentElement.offsetHeight) return;
     this.loadMoreContent();
   }
@@ -309,42 +319,48 @@ class Clothing extends React.Component {
       dialogProps,
       dialogActions,
       appliedFilters,
-      hasMore
+      hasMore,
+      showSortingFilter
     } = this.state;
     const leftBlockStyle =
       document.documentElement.scrollTop > 60 ? { position: "fixed", top: "50px" } : { position: "sticky", top: 0 };
 
+    const windowWidth = localStorage.getItem("deviceWidth");
+
     return (
       <section className="clothing-wrapper">
-        <div className="left-block" style={leftBlockStyle}>
-          <section className="left-fitler-wrapper">
-            <div className="filter-head">
-              <h4>Filters</h4>
-              <div onClick={this.handleClearFilters}>Clear Filter</div>
-            </div>
-            <div className="filters-base">
-              {FILTER_OPTIONS &&
-                FILTER_OPTIONS.length > 0 &&
-                FILTER_OPTIONS.map(filterOption => {
-                  const { label: filterTitle, options, value, type } = filterOption;
-                  return (
-                    <div className="filter-row" key={value}>
-                      <div className="filter-label">{filterTitle}</div>
-                      <div className="filter-list-option">
-                        <FiltersOptionsByType
-                          type={type}
-                          options={options}
-                          appliedFilters={appliedFilters}
-                          filterCode={value}
-                          handleOnChange={this.handleOnChange}
-                        />
+        {windowWidth && windowWidth > 720 && (
+          <div className="left-block" style={leftBlockStyle}>
+            <section className="left-fitler-wrapper">
+              <div className="filter-head">
+                <h4>Filters</h4>
+                <div onClick={this.handleClearFilters}>Clear Filter</div>
+              </div>
+              <div className="filters-base">
+                {FILTER_OPTIONS &&
+                  FILTER_OPTIONS.length > 0 &&
+                  FILTER_OPTIONS.map(filterOption => {
+                    const { label: filterTitle, options, value, type } = filterOption;
+                    return (
+                      <div className="filter-row" key={value}>
+                        <div className="filter-label">{filterTitle}</div>
+                        <div className="filter-list-option">
+                          <FiltersOptionsByType
+                            type={type}
+                            options={options}
+                            appliedFilters={appliedFilters}
+                            filterCode={value}
+                            handleOnChanges={this.handleOnChange}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-            </div>
-          </section>
-        </div>
+                    );
+                  })}
+              </div>
+            </section>
+          </div>
+        )}
+
         <div className="right-block">
           <div className="sorting-wrapper">
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -371,12 +387,14 @@ class Clothing extends React.Component {
               })) || <div className="no-content-found">Nothing Found</div>}
           </div>
 
-          {!hasMore && <div className="no-content-found">Thats all we got for you</div>}
+          {!hasMore && <div className="no-content-found">"Thats all we got for you."</div>}
 
-          <div className="sorting-filter-options-wrapper">
-            <button onClick={this.handleOnOpenDialog}>Filters</button>
-            <button onClick={this.handleOnOpenSortingDialog}>Sort</button>
-          </div>
+          {showSortingFilter && (
+            <div className="sorting-filter-options-wrapper">
+              <button onClick={this.handleOnOpenDialog}>Filters</button>
+              <button onClick={this.handleOnOpenSortingDialog}>Sort</button>
+            </div>
+          )}
         </div>
         <Dialog
           status={dialogStatus}

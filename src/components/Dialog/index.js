@@ -26,16 +26,8 @@ class Dialog extends React.Component {
   }
 
   render() {
-    const {
-      status,
-      onClose,
-      dialogType,
-      dialogProps = {},
-      dialogActions = {},
-      dialogValue = {}
-    } = this.props;
+    const { status, onClose, dialogType, dialogProps = {}, dialogActions = {}, dialogValue = {} } = this.props;
     const { shortBottom = "", fullScreen = "", hideCloseIcon = false } = dialogProps;
-    const { applyFilters } = dialogActions;
 
     if (!status) {
       return false;
@@ -57,18 +49,13 @@ class Dialog extends React.Component {
           )}
           <div className="dialog-content">
             <RenderDialogContentByType
+              onClose={onClose}
               dialogType={dialogType}
               dialogProps={dialogProps}
               dialogValue={dialogValue}
               dialogActions={dialogActions}
             />
           </div>
-          {dialogType && dialogType === "FILTERS" && (
-            <div className="dialog-footer">
-              <button onClick={onClose}>Close</button>
-              <button onClick={applyFilters}>Apply</button>
-            </div>
-          )}
         </section>
         <div className="dialog-backdrop"></div>
       </React.Fragment>

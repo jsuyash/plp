@@ -14,8 +14,15 @@ const FiltersOptionsByType = props => {
           handleOnChange={handleOnChange}
         />
       );
-    case "SINGLE_SELECTS":
-      return <SingleSelectInput />;
+    case "SINGLE_SELECT":
+      return (
+        <SingleSelectInput
+          options={options}
+          appliedFilters={appliedFilters}
+          filterCode={filterCode}
+          handleOnChange={handleOnChange}
+        />
+      );
 
     default:
       return null;

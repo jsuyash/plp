@@ -3,13 +3,15 @@ import Filters from "./Filters";
 import SortingOptions from "./SortingOptions";
 
 const RenderDialogContentByType = props => {
-  const { dialogType, dialogActions = {}, dialogProps = {}, dialogValue = {} } = props;
+  const { dialogType, dialogActions = {}, dialogProps = {}, dialogValue = {}, onClose } = props;
   const { filters = [], appliedFilters = [] } = dialogValue;
-  const { handleOnChangeFilters } = dialogActions;
+  const { handleOnChangeFilters, applyFilters } = dialogActions;
   switch (dialogType) {
     case "FILTERS":
       return (
         <Filters
+          onClose={onClose}
+          applyFilters={applyFilters}
           filters={filters}
           appliedFilters={appliedFilters}
           handleOnChangeFilters={handleOnChangeFilters}
