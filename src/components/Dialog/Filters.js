@@ -61,7 +61,7 @@ class Filters extends React.Component {
         const doesExistRes = CommonHelper.getByKeyValFromObject(appliedFiltersList, "type", name);
         const doesExist = doesExistRes ? Object.assign({}, doesExistRes) : {};
         // NOTE: check if the filter type already exist
-        if (doesExist) {
+        if (doesExist && Object.keys(doesExist).length > 0) {
           let { filters = [] } = doesExist;
           // NOTE: when filters array is not empty and value does not exist
           if (checked) {
@@ -81,7 +81,11 @@ class Filters extends React.Component {
             }
           }
           doesExist.filters = filters;
-          result = [doesExist];
+          // NOTE: replace with new updated Value
+          const indexOfExisting = appliedFiltersList.findIndex(af => af.type == name);
+          let newValueClone = Object.assign([], appliedFiltersList);
+          newValueClone[indexOfExisting] = doesExist;
+          result = [...newValueClone];
         } else {
           let filterVal = type === "checkbox" ? [value] : value;
           const obj = {

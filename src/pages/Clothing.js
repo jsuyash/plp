@@ -81,9 +81,10 @@ class Clothing extends React.Component {
         }
       } else {
         const doesExistRes = CommonHelper.getByKeyValFromObject(appliedFiltersList, "type", name);
+        debugger;
         const doesExist = doesExistRes ? Object.assign({}, doesExistRes) : {};
         // NOTE: check if the filter type already exist
-        if (doesExist) {
+        if (doesExist && Object.keys(doesExist).length > 0) {
           let { filters = [] } = doesExist;
           // NOTE: when filters array is not empty and value does not exist
           if (checked) {
@@ -103,7 +104,11 @@ class Clothing extends React.Component {
             }
           }
           doesExist.filters = filters;
-          result = [doesExist];
+          // NOTE: replace with new updated Value
+          const indexOfExisting = appliedFiltersList.findIndex(af => af.type == name);
+          let newValueClone = Object.assign([], appliedFiltersList);
+          newValueClone[indexOfExisting] = doesExist;
+          result = [...newValueClone];
         } else {
           let filterVal = type === "checkbox" ? [value] : value;
           const obj = {
@@ -141,12 +146,11 @@ class Clothing extends React.Component {
       appliedFiltersKeys.forEach(fk => {
         const searchKey = FILTER_KEY_MAPPER[fk];
         const searchInValue = CommonHelper.getByKeyValFromObject(appliedFilters, "type", fk)["filters"];
-
         if (searchInValue && searchInValue.constructor === Array) {
           if (searchInValue.length > 0) {
             result = result.filter(pl => {
               const val = pl[searchKey];
-              if ((val && val.constructor === String) || val.constructor === Number) {
+              if (val && (val.constructor === String || val.constructor === Number)) {
                 return searchInValue.includes(pl[searchKey]);
               } else if (val && val.constructor === Array) {
                 return val.some(ele => searchInValue.includes(ele));
